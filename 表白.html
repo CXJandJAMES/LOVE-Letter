@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给特别的你</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5c3d4, #a2c2e8);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #e74c8c;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .heart {
+            color: #e74c8c;
+            font-size: 40px;
+            animation: heartbeat 1.5s infinite;
+            margin: 20px 0;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .button {
+            background-color: #e74c8c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+        
+        .button:hover {
+            background-color: #c03977;
+            transform: translateY(-3px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #responseMessage {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .yes {
+            color: #2ecc71;
+        }
+        
+        .no {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>给<span id="recipientName">小可爱</span> ❤️</h1>
+        
+        <div class="message">
+            <p>亲爱的<span id="recipientName2">小可爱</span>，</p>
+            <p>从遇见你的那一刻起，我的世界变得更加美好。</p>
+            <p>你的笑容是我每天的动力，你的存在让我的生活充满意义。</p>
+            <p>我想和你一起走过每一个春夏秋冬，分享生活中的点点滴滴。</p>
+            <p>你愿意给我一个机会，让我成为你生命中的那个人吗？</p>
+        </div>
+        
+        <div class="heart">❤️</div>
+        
+        <p>请告诉我你的答案：</p>
+        <button class="button" id="yesBtn">我愿意</button>
+        <button class="button" id="noBtn">再考虑一下</button>
+        
+        <div id="responseMessage" class="hidden"></div>
+    </div>
+
+    <script>
+        // 你可以在这里修改对方的名字
+        // 把 "小可爱" 改成你想要表白的那个人的名字
+        const name = "小可爱";
+        document.getElementById('recipientName').textContent = name;
+        document.getElementById('recipientName2').textContent = name;
+        
+        // 处理"我愿意"按钮点击
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            document.getElementById('responseMessage').textContent = "太棒了！这是我生命中最美好的一天！❤️";
+            document.getElementById('responseMessage').className = "yes";
+            document.getElementById('responseMessage').classList.remove('hidden');
+            
+            // 隐藏按钮
+            document.getElementById('yesBtn').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
+        });
+        
+        // 处理"再考虑一下"按钮移动
+        document.getElementById('noBtn').addEventListener('mouseover', function() {
+            const button = document.getElementById('noBtn');
+            const container = document.querySelector('.container');
+            
+            // 随机位置
+            const maxX = container.offsetWidth - button.offsetWidth - 20;
+            const maxY = container.offsetHeight - button.offsetHeight - 20;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            button.style.position = 'absolute';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        });
+        
+        // 处理"再考虑一下"按钮点击
+        document.getElementById('noBtn').addEventListener('click', function() {
+            document.getElementById('responseMessage').textContent = "没关系，我会继续努力的！💪";
+            document.getElementById('responseMessage').className = "no";
+            document.getElementById('responseMessage').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
